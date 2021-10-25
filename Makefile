@@ -47,6 +47,14 @@ app_build:
 app_run_linux:
 	cd build/ && ./ExampleCpp
 
-.PHONY: configure_docker
-configure_docker:
-	docker run -v $(ROOT_DIR):$(ROOT_DIR) --rm --workdir $(ROOT_DIR) example_cpp make configure_simple
+.PHONY: docker_app_configure
+docker_app_configure:
+	docker run -v $(ROOT_DIR):$(ROOT_DIR) --rm --workdir $(ROOT_DIR) example_cpp make app_configure_simple
+
+.PHONY: docker_app_build
+docker_app_build:
+	docker run -v $(ROOT_DIR):$(ROOT_DIR) --rm --workdir $(ROOT_DIR) example_cpp make app_build
+
+.PHONY: docker_app_run
+docker_app_run:
+	docker run -v $(ROOT_DIR):$(ROOT_DIR) --rm --workdir $(ROOT_DIR) example_cpp ./build/ExampleCpp
