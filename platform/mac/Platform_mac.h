@@ -15,9 +15,7 @@
 class Platform_mac: public Platform {
     
 public:
-    
-    float GetCPUTemperature() override;
-    
+ 
 };
 
 #endif /* Platform_mac_h */

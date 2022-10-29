@@ -7,10 +7,3 @@
 //
 
 #include "Platform.h"
-
-
-
-float Platform::GetCPUTemperature()
-{
-    return 0;
-}

@@ -9,7 +9,6 @@
 #include "Platform_mac.h"
 #include <mutex>
 #import <Foundation/Foundation.h>
-#import "SMCWrapper.h"
 
 
 
@@ -29,17 +28,3 @@ Platform *Platform::CurrentPlatform()
     m.unlock();
     return p;
 }
-
-float Platform_mac::GetCPUTemperature()
-{
-    SMCWrapper *smc = [SMCWrapper sharedWrapper];
-    char key[10];
-    memset(key, 0, sizeof(key));
-    
-    NSNumber *temp;
-    if ( [smc readKey:@"TC0P" intoNumber:&temp] ){
-        return [temp floatValue];
-    }
-    return 0;
-}
-

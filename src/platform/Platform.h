@@ -17,8 +17,6 @@ public:
     
     static Platform *CurrentPlatform();
     
-    virtual float GetCPUTemperature();
-    
 };
 
 #endif /* Platform_h */

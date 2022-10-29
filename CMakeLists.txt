@@ -37,9 +37,6 @@ if (PROJECT_OS_MACOS)
     # tested with Xcode 
     list (APPEND PROJECT_SOURCES "${PROJECT_SOURCE_DIR}/platform/mac/Platform_mac.mm")
     list (APPEND PROJECT_SOURCES "${PROJECT_SOURCE_DIR}/platform/mac/Platform_mac.h")
-    list (APPEND PROJECT_SOURCES "${PROJECT_SOURCE_DIR}/platform/mac/smc.h")
-    list (APPEND PROJECT_SOURCES "${PROJECT_SOURCE_DIR}/platform/mac/SMCWrapper.h")
-    list (APPEND PROJECT_SOURCES "${PROJECT_SOURCE_DIR}/platform/mac/SMCWrapper.m")
 
     include_directories("${SRC_DIR}/platform/mac")
 endif()

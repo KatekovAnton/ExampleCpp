@@ -16,8 +16,6 @@ class Platform_win: public Platform {
     
 public:
     
-    float GetCPUTemperature() override;
-    
 };
 
 #endif /* Platform_win_h */

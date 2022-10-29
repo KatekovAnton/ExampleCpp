@@ -27,10 +27,3 @@ Platform *Platform::CurrentPlatform()
     m.unlock();
     return p;
 }
-
-float Platform_win::GetCPUTemperature()
-{
-    // TODO
-    return 0;
-}
-
