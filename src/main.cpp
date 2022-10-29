@@ -12,17 +12,44 @@ int main()
 int main(int argc, char **argv)
 #endif
 {
+    Platform *p = Platform::CurrentPlatform();
+    
     std::cout << "Hello world!" << std::endl;
+    
+    std::string filePath = p->GetWorkingDir() + "/file.txt";
+    
+    std::cout << filePath << std::endl;
+    
+    if (std::filesystem::exists(filePath)) {
+        std::filesystem::remove(filePath);
+    }
 
-    std::ifstream t("file.txt");
-    if (t.fail()) {
-        std::cout << "File does not exist!" << std::endl;
-        return 1;
+    {
+        std::ofstream writing;
+        writing.open(filePath);
+        if (!writing.is_open()) {
+            int a = 0;
+            a++;
+        }
+        std::string data = "some string to write";
+        writing.write(data.c_str(), data.length());
+        writing.flush();
+        writing.close();
     }
     
-    std::stringstream buffer;
-    buffer << t.rdbuf();
-    std::string str = buffer.str();
+    std::string str;
+    
+    {
+        std::ifstream reading(filePath);
+        if (reading.fail()) {
+            std::cout << "File does not exist!" << std::endl;
+            return 1;
+        }
+        std::stringstream buffer;
+        buffer << reading.rdbuf();
+        str = buffer.str();
+    }
+    
     std::cout << str << std::endl;
     return 0;
 }

@@ -9,6 +9,8 @@
 #ifndef Platform_h
 #define Platform_h
 
+#include <string>
+
 
 
 class Platform {
@@ -16,6 +18,8 @@ class Platform {
 public:
     
     static Platform *CurrentPlatform();
+    
+    virtual std::string GetWorkingDir();
     
 };
 

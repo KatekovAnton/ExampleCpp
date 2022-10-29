@@ -7,3 +7,11 @@
 //
 
 #include "Platform.h"
+#include <filesystem>
+
+
+
+std::string Platform::GetWorkingDir()
+{
+    return std::filesystem::current_path().string();
+}

@@ -28,3 +28,27 @@ Platform *Platform::CurrentPlatform()
     m.unlock();
     return p;
 }
+
+Platform_mac::Platform_mac()
+{
+    NSFileManager* fileManager = [[NSFileManager alloc] init];
+    NSString* bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    NSArray* urlPaths = [fileManager URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+    if (bundleID == nullptr) {
+        bundleID = @"test_app";
+    }
+    NSURL* appDirectory = [[urlPaths objectAtIndex:0] URLByAppendingPathComponent:bundleID isDirectory:YES];
+    
+    //TODO: handle the error
+    if (![fileManager fileExistsAtPath:[appDirectory path]]) {
+        [fileManager createDirectoryAtURL:appDirectory withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    NSString *result = [appDirectory path];
+    _workingDir = std::string(result.UTF8String);
+}
+
+std::string Platform_mac::GetWorkingDir() 
+{
+    return _workingDir;
+}
